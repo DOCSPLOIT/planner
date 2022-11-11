@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,shrink-to-fit=no"
+    />
+    <meta name="author" content="Robert Devasia" />
+    <title>Login</title>
+    <link href="/static/css/bootstrap.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="vh-100 d-flex">
+      <div class="m-auto col-md-3 col-sm-6 col-lg-4 card">
+        <div class="card-header bg-primary">
+          <h3 class="text-center">Planner</h3>
+        </div>
+        <div class="card-body">
+          <h4 class="text-center">Login</h4>
+          <div
+            id="invalidCred"
+            class="py-3 text-center text-danger col-md-12 d-none col-md-12"
+          ></div>
+          <form class="needs-validation" novalidate onsubmit="onSubmit(event)">
+            <div class="form-group py-1">
+              <label for="username">Username</label>
+              <input
+                type="text"
+                class="form-control text-white"
+                name="username"
+                id="username"
+                aria-describedby="usernameHelper"
+                placeholder="Enter Username"
+                onchange="onChange(this)"
+                autocomplete="off"
+                required
+              />
+              <small id="usernameHelper" class="invalid-feedback"
+                >Field Required</small
+              >
+            </div>
+            <div class="form-group py-1">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                autocomplete="off"
+                class="form-control text-white"
+                name="password"
+                id="password"
+                aria-describedby="passwordHelper"
+                placeholder="Enter Password"
+                onchange="onChange(this)"
+                required
+              />
+              <small id="passwordHelper" class="invalid-feedback"
+                >Field Required</small
+              >
+            </div>
+
+            <div
+              style="border: none; background-color: transparent"
+              class="card-footer text-center"
+            >
+              <button
+                id="btn"
+                type="submit"
+                class="btn btn-outline-primary text-center"
+              >
+                Submit
+              </button>
+              <div
+                id="loader"
+                class="d-none spinner-border text-primary"
+                role="status"
+              >
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          </form>
+          <footer class="text-center">
+            <a href="/forgot-password" class="text-small my-3"
+              >Forgot Password?</a
+            >
+            <div class="my-3">
+              <a href="/signup" class="text-small link-primary py-3"
+                >Create New Account</a
+              >
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <script>
+      let email = "";
+      let password = "";
+      function onChange(e) {
+        switch (e.name) {
+          case "username":
+            {
+              email = e.value;
+            }
+            break;
+          case "password": {
+            password = e.value;
+          }
+        }
+      }
+      async function onSubmit(e) {
+        e.preventDefault();
+        const form = e.currentTarget;
+        form.classList.add("was-validated");
+        if (form.checkValidity()) {
+          document.getElementById("btn").classList.add("d-none");
+          document.getElementById("invalidCred").classList.add("d-none");
+          document.getElementById("loader").classList.remove("d-none");
+          const response = await fetch("/api/auth/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, password }),
+          });
+          const result = await response.json();
+          if (result.message === "success") {
+            window.location.href = "/";
+          }
+          form.classList.remove("was-validated");
+          form.reset();
+          document.getElementById("invalidCred").innerHTML = result.message;
+          document.getElementById("invalidCred").classList.remove("d-none");
+          document.getElementById("loader").classList.add("d-none");
+          document.getElementById("btn").classList.remove("d-none");
+        } else {
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -124,4 +124,6 @@ dist/
 tmp/
 temp/
 
+public/
+
 deliver.json

@@ -40,9 +40,7 @@ app.use(session(
 ))
 
 const root = path.join(__dirname, 'static')
-app.use(express.static(root));
 
-app.use('/public', express.static(path.join(__dirname, 'public')));
 app.get("/", (req, res) => {
     if ((req.session as any).token) {
         return res.sendFile('/nextApp/index.html', { root })
@@ -94,8 +92,5 @@ app.get('/resetPassword/:token', (req, res) => {
 })
 
 
-app.get('*', function (req, res) {
 
-    res.status(404).sendFile('404.html', { root });
-});
 server.run();

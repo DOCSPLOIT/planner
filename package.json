@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@docsploit/espress": "^1.0.10",
+    "@docsploit/espress": "^1.0.12",
     "bcryptjs": "^2.4.3",
     "connect-pg-simple": "^7.0.0",
     "cookie-parser": "^1.4.6",

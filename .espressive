@@ -3,7 +3,7 @@
   "description": "Project Manager",
   "author": "Robert Devasia",
   "framework": {
-    "version": "1.0.10",
+    "version": "1.0.12",
     "assets": [
       "/static",
       "/public"

@@ -7,8 +7,7 @@ import path from 'path'
 import { database } from "./utils/database";
 
 
-
-database();
+database()
 const PostgreSqlStore = require('connect-pg-simple')(session);
 const server = new Server({
     limit: "100mb",
@@ -30,8 +29,12 @@ app.use(session(
         saveUninitialized: false,
         cookie: { maxAge: 1000 * 60 * 60 * 24 * 30, },
         store: new PostgreSqlStore({
-            conString: getEnv('DB'),
-            createTableIfMissing: true
+            conObject: {
+                connectionString: getEnv('DB'),
+                ssl: true,
+            },
+            createTableIfMissing: true,
+
         })
     }
 ))

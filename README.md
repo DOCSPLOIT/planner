@@ -12,3 +12,11 @@ Planner is a simple webapp built with **Express.js** and **Next.js**
 
 ![](__README__/Home.png)
 ![](__README__/Project-Home.png)
+
+### Execution
+
+- Clone this repository
+- `npm install`
+- `npm run dev`
+
+**Note:** You must have varifalia account and the details needed for verifying account ( Only for developement)

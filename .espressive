@@ -1,0 +1,12 @@
+{
+  "name": "syplans_server",
+  "description": "Project Manager",
+  "author": "Robert Devasia",
+  "framework": {
+    "version": "1.0.10",
+    "assets": [
+      "/static",
+      "/public"
+    ]
+  }
+}

@@ -14,9 +14,9 @@ const server = new Server({
     _cors:
     {
         // origin: 'http://localhost:3000',
-        // credentials: true,
-        // allowedHeaders: "Content-Type,Content-Length, Authorization, Accept,X-Requested-With",
-        // methods: ['GET', "POST", 'DELETE', 'PUT', 'OPTIONS', 'HEAD']
+        credentials: true,
+        allowedHeaders: "Content-Type,Content-Length, Authorization, Accept,X-Requested-With",
+        methods: ['GET', "POST", 'DELETE', 'PUT', 'OPTIONS', 'HEAD']
     }
 }, modules, "Planner");
 const app = server.app;

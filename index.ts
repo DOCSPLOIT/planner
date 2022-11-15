@@ -31,7 +31,7 @@ app.use(session(
         store: new PostgreSqlStore({
             conObject: {
                 connectionString: getEnv('DB'),
-                // ssl: true,
+                ssl: true,
             },
             createTableIfMissing: true,
 

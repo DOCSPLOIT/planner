@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import { getEnv } from '@docsploit/espress/lib/utils'
 export const sequelize = new Sequelize(getEnv('DB'), {
     logging: false, dialectOptions: {
-        // ssl: true
+        ssl: true
     }
 });
 export async function database(sync: boolean = false) {

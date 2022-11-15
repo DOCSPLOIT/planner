@@ -13,7 +13,7 @@ const server = new Server({
     limit: "100mb",
     _cors:
     {
-        // origin: 'http://localhost:3000',
+        origin: getEnv('CLIENT'),
         credentials: true,
         allowedHeaders: "Content-Type,Content-Length, Authorization, Accept,X-Requested-With",
         methods: ['GET', "POST", 'DELETE', 'PUT', 'OPTIONS', 'HEAD']
@@ -31,7 +31,7 @@ app.use(session(
         store: new PostgreSqlStore({
             conObject: {
                 connectionString: getEnv('DB'),
-                ssl: true,
+                // ssl: true,
             },
             createTableIfMissing: true,
 
